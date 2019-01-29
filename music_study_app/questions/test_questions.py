@@ -1,12 +1,10 @@
 from django.test import TestCase
 from .QuestionGenerator import QuestionGenerator
-from .QuestionGenerator import SimpleIntervalMajorScale
+from .questions import Question
 
 
-class QuestionTest(TestCase):
+class QuestionGeneratorTest(TestCase):
 
-    def test_major_scale_degree_identification_question_format(self):
-        question_generator = SimpleIntervalMajorScale('C', 5)
-        expected_question_format = 'What is the fourth note of C Major?'
-        actual_question_format = question_generator.question
-        self.assertEqual(expected_question_format, actual_question_format)
+    def test_that_generator_returns_an_instance_of_question(self):
+        question = QuestionGenerator.random_question()
+        self.assertIsInstance(question, Question)
