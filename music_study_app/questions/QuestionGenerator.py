@@ -1,14 +1,22 @@
-from .questions import Question
+import random
+from .questions.questions import Question
+from .questions.question_choices import question_choices
 
 
 class QuestionGenerator:
 
-    question_choices = {'simple-interval-major': SimpleIntervalMajor}
+
 
     @staticmethod
     def question_factory(question_type=None):
-        if not question_type:
-            raise TypeError('question_factory missing keyword argument question_type')
+        """
+        Used to get a question.  If no question_type is given, returns a random question, else returns
+        a question of the type given in the question_type key.
+        :param question_type: The key of the Question subclass that we are to return
+        :return: An instance of a Question
+        """
 
-        # TODO get question based on the question_type and the question_choices dict above
-        return Question()
+        if not question_type:
+            return question_choices[random.choice(list(question_choices.keys()))]
+
+        return question_choices.get(question_type, None)
