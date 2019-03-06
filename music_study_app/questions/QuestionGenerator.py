@@ -16,6 +16,6 @@ class QuestionGenerator:
         """
 
         if not question_type:
-            return question_choices[random.choice(list(question_choices.keys()))]
+            return question_choices[random.choice(list(question_choices.keys()))]()
 
-        return question_choices.get(question_type, None)
+        return question_choices.get(question_type)()
