@@ -2,4 +2,6 @@ from .questions import Question
 
 
 class SimpleIntervalMajor(Question):
-    pass
+
+    def question(self):
+        return "test"

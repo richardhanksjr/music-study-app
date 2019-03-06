@@ -1,5 +1,4 @@
 import random
-from .questions.questions import Question
 from .questions.question_choices import question_choices
 
 
