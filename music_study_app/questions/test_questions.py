@@ -34,3 +34,24 @@ class SimpleScaleDegreeMajorTest(TestCase):
         expected_answer = 'F'
         actual_answer = self.question.answer
         self.assertEqual(expected_answer, actual_answer)
+
+    def test_for_correct_answer_options(self):
+        # The length of the answer array should be 4
+        self.assertEqual(4, len(self.question.answer_options))
+        # All answers should be strings
+        for answer in self.question.answer_options:
+            if not isinstance(answer, str):
+                self.assertFalse(True)
+            else:
+                self.assertTrue(True)
+        # All the answers should be unique
+        if len(list(set(self.question.answer_options))) != len(self.question.answer_options):
+            self.assertFalse(True)
+        else:
+            self.assertTrue(True)
+        # The correct answer should be in the list
+        if 'F' in self.question.answer_options:
+            self.assertTrue(True)
+        else:
+            self.assertFalse(True)
+
