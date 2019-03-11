@@ -21,8 +21,16 @@ class QuestionGeneratorTest(TestCase):
 
 class SimpleScaleDegreeMajorTest(TestCase):
 
+    def setUp(self):
+        self.question = SimpleScaleDegreeMajor('B-', 4)
+
     def test_for_correct_question_string(self):
         # Check for the fifth scale degree of Bb Major
-        question = SimpleScaleDegreeMajor('B-', 4)
+        question = self.question
         expected = "What is the fifth scale degree of B\u266D Major?"
         self.assertEqual(expected, question.question)
+
+    def test_for_correct_answer(self):
+        expected_answer = 'F'
+        actual_answer = self.question.answer
+        self.assertEqual(expected_answer, actual_answer)

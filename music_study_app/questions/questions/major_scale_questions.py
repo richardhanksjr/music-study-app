@@ -11,10 +11,13 @@ class SimpleScaleDegreeMajor(Question):
         self.scale_degree_index = scale_degree_index
         self.scale_degree = None
         self.question = None
+        self.answer = None
         super().__init__()
 
     def generate_answer(self):
-        pass
+        scale = key.Key(self.tonic)
+        self.answer =  scale.pitches[self.scale_degree_index].unicodeName
+
 
     def generate_answer_options(self):
         pass
@@ -30,5 +33,3 @@ class SimpleScaleDegreeMajor(Question):
                         f"of {scale.getTonic().unicodeName} {scale.mode.capitalize()}?"
 
 
-    def question(self):
-        return self.question
