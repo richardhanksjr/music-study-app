@@ -7,9 +7,7 @@ class Question(ABC):
         self.generate_question()
         self.generate_answer()
         self.generate_answer_options()
-
-    def question(self):
-        raise NotImplementedError
+        self.generate_help_steps_array()
 
     def generate_question(self):
         raise NotImplementedError
@@ -18,4 +16,7 @@ class Question(ABC):
         raise NotImplementedError
 
     def generate_answer_options(self):
+        raise NotImplementedError
+
+    def generate_help_steps_array(self):
         raise NotImplementedError

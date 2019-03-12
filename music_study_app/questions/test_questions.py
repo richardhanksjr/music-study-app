@@ -1,4 +1,5 @@
 from django.test import TestCase
+from music21 import *
 from .QuestionGenerator import QuestionGenerator
 from .questions.questions import Question
 from .questions.major_scale_questions import SimpleScaleDegreeMajor
@@ -54,4 +55,9 @@ class SimpleScaleDegreeMajorTest(TestCase):
             self.assertTrue(True)
         else:
             self.assertFalse(True)
+
+    def test_for_correct_help_steps(self):
+        root = pitch.Pitch('B-')
+        expected_help = ({'prompt': 'What is the root of this key?', 'answer': root.unicodeName},)
+        self.assertTupleEqual(expected_help, self.question.help_steps)
 

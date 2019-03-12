@@ -13,12 +13,13 @@ class SimpleScaleDegreeMajor(Question):
         self.question = None
         self.answer = None
         self.answer_options = None
+        self.help_steps = None
+        self.scale = None
         super().__init__()
 
     def generate_answer(self):
         scale = key.Key(self.tonic)
         self.answer = scale.pitches[self.scale_degree_index].unicodeName
-
 
     def generate_answer_options(self):
         self.answer_options = random_answer_options_pitch(correct_answer=self.answer)
@@ -33,4 +34,5 @@ class SimpleScaleDegreeMajor(Question):
         self.question = f"What is the {self.scale_degree['name']} scale degree " \
                         f"of {scale.getTonic().unicodeName} {scale.mode.capitalize()}?"
 
-
+    def generate_help_steps_array(self):
+        self.help_steps = ({'prompt': 'What is the root of this key?', 'answer': self.scale.getTonic().unicodeName},)
