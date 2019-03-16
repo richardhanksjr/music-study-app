@@ -50,3 +50,7 @@ class SimpleScaleDegreeMajor(Question):
     @property
     def answer(self):
         return self._answer
+
+    @property
+    def question_type(self):
+        return 'simple-scale-degree-major'

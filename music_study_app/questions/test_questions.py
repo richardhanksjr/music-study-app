@@ -33,12 +33,12 @@ class SimpleScaleDegreeMajorTest(TestCase):
 
     def test_for_correct_answer(self):
         expected_answer = 'F'
-        actual_answer = self.question.get_answer()
+        actual_answer = self.question.answer
         self.assertEqual(expected_answer, actual_answer)
 
     def test_for_correct_answer_options(self):
         # The length of the answer array should be 4
-        self.assertEqual(4, len(self.question.get_answer_options()))
+        self.assertEqual(4, len(self.question.answer_options))
         # All answers should be strings
         for answer in self.question._answer_options:
             if not isinstance(answer, str):
@@ -61,3 +61,7 @@ class SimpleScaleDegreeMajorTest(TestCase):
         expected_help = ({'prompt': 'What is the root of this key?', 'answer': root.unicodeName},)
         self.assertTupleEqual(expected_help, self.question.help_steps)
 
+    def test_for_question_type(self):
+        question_type = 'simple-scale-degree-major'
+        question = QuestionGenerator.question_factory(question_type=question_type)
+        self.assertEqual(question_type, question.question_type)
