@@ -30,9 +30,9 @@ class SimpleScaleDegreeMajor(Question):
         if not self.scale_degree_index:
             self.scale_degree_index = random.choice(range(8))
         self.scale_degree = scale_degrees[self.scale_degree_index]
-        scale = key.Key(self.tonic)
+        self.scale = key.Key(self.tonic)
         self.question = f"What is the {self.scale_degree['name']} scale degree " \
-                        f"of {scale.getTonic().unicodeName} {scale.mode.capitalize()}?"
+                        f"of {self.scale.getTonic().unicodeName} {self.scale.mode.capitalize()}?"
 
     def generate_help_steps_array(self):
         self.help_steps = ({'prompt': 'What is the root of this key?', 'answer': self.scale.getTonic().unicodeName},)

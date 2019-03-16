@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import GetRandomQuestion
 
 
-urlpattern = []
+urlpatterns = [path('', GetRandomQuestion.as_view(), name='random-question')]
