@@ -52,3 +52,8 @@ class SimpleScaleDegreeMajor(Question):
     @property
     def question_type(self):
         return 'simple-scale-degree-major'
+
+    @property
+    def question_params(self):
+        return {'question_type': self.question_type,
+                'tonic': self.tonic, 'scale_degree_index': self.scale_degree_index}

@@ -10,5 +10,5 @@ class GetRandomQuestion(APIView):
         question = QuestionGenerator.question_factory()
         return Response({'question': question.question,
                          'answer_options': question.answer_options,
-                         'question_type': question.question_type})
+                         'question_params': question.question_params})
 

@@ -8,5 +8,5 @@ class GetRandomQuestionTest(TestCase):
         self.client = APIClient()
 
     def test_returns_correct_keys(self):
-        expected_keys = ['question', 'answer_options', 'question_type']
+        expected_keys = ['question', 'answer_options',  'question_params']
         self.assertListEqual(expected_keys, list(self.client.get('/api/question').data.keys()))

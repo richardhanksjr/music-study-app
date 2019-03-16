@@ -37,4 +37,8 @@ class Question(ABC):
     def question_type(self):
         raise NotImplementedError
 
+    @property
+    def question_params(self):
+        raise NotImplementedError
+
 

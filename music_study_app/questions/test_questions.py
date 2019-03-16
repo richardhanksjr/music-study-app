@@ -65,3 +65,9 @@ class SimpleScaleDegreeMajorTest(TestCase):
         question_type = 'simple-scale-degree-major'
         question = QuestionGenerator.question_factory(question_type=question_type)
         self.assertEqual(question_type, question.question_type)
+
+    def test_for_question_params(self):
+        expected_params = {'question_type': self.question.question_type,
+                           'tonic': self.question.tonic,
+                           'scale_degree_index': self.question.scale_degree_index}
+        self.assertDictEqual(expected_params, self.question.question_params)
