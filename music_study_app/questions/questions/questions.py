@@ -21,11 +21,16 @@ class Question(ABC):
     def generate_help_steps_array(self):
         raise NotImplementedError
 
-    def get_question(self):
+    @property
+    def question(self):
         raise NotImplementedError
 
-    def get_answer_options(self):
+    @property
+    def answer_options(self):
         raise NotImplementedError
 
-    def get_answer(self):
+    @property
+    def answer(self):
         raise NotImplementedError
+
+

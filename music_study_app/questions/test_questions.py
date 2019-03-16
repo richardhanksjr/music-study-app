@@ -12,7 +12,7 @@ class QuestionGeneratorTest(TestCase):
         self.assertTrue(isinstance(question, Question))
 
     def test_given_question_type_returns_correct_instance(self):
-        question = QuestionGenerator.question_factory(question_type='simple-interval-major')
+        question = QuestionGenerator.question_factory(question_type='simple-scale-degree-major')
         self.assertTrue(isinstance(question, SimpleScaleDegreeMajor))
 
     def test_question_has_a_question_string(self):
@@ -33,25 +33,25 @@ class SimpleScaleDegreeMajorTest(TestCase):
 
     def test_for_correct_answer(self):
         expected_answer = 'F'
-        actual_answer = self.question.answer
+        actual_answer = self.question.get_answer()
         self.assertEqual(expected_answer, actual_answer)
 
     def test_for_correct_answer_options(self):
         # The length of the answer array should be 4
-        self.assertEqual(4, len(self.question.answer_options))
+        self.assertEqual(4, len(self.question.get_answer_options()))
         # All answers should be strings
-        for answer in self.question.answer_options:
+        for answer in self.question._answer_options:
             if not isinstance(answer, str):
                 self.assertFalse(True)
             else:
                 self.assertTrue(True)
         # All the answers should be unique
-        if len(list(set(self.question.answer_options))) != len(self.question.answer_options):
+        if len(list(set(self.question._answer_options))) != len(self.question._answer_options):
             self.assertFalse(True)
         else:
             self.assertTrue(True)
         # The correct answer should be in the list
-        if 'F' in self.question.answer_options:
+        if 'F' in self.question._answer_options:
             self.assertTrue(True)
         else:
             self.assertFalse(True)
