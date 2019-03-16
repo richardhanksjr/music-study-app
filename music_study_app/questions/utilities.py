@@ -20,7 +20,8 @@ def random_pitch():
 def random_answer_options_pitch(len_of_list=4, correct_answer=None):
     random_answer_list = [correct_answer] if correct_answer else []
     while len(random_answer_list) < len_of_list:
-        random_pitch_inner = random_pitch()
+        random_pitch_inner = pitch.Pitch(random_pitch()).unicodeName
         if random_pitch_inner not in random_answer_list:
             random_answer_list.append(random_pitch_inner)
+    random.shuffle(random_answer_list)
     return random_answer_list

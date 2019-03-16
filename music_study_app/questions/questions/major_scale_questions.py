@@ -6,6 +6,7 @@ from ..utilities import (pitch_names, accidentals, scale_degrees, random_pitch, 
 
 class SimpleScaleDegreeMajor(Question):
 
+
     def __init__(self, tonic=None, scale_degree_index=None):
         self.tonic = tonic
         self.scale_degree_index = scale_degree_index
@@ -36,3 +37,13 @@ class SimpleScaleDegreeMajor(Question):
 
     def generate_help_steps_array(self):
         self.help_steps = ({'prompt': 'What is the root of this key?', 'answer': self.scale.getTonic().unicodeName},)
+
+
+    def get_question(self):
+        return self.question
+
+    def get_answer_options(self):
+        return self.answer_options
+
+    def get_answer(self):
+        return self.answer
