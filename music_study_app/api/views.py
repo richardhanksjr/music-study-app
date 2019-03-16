@@ -9,5 +9,6 @@ class GetRandomQuestion(APIView):
     def get(self, request, format=None):
         question = QuestionGenerator.question_factory()
         return Response({'question': question.question,
-                         'answer_options': question.answer_options})
+                         'answer_options': question.answer_options,
+                         'question_type': question.question_type})
 
