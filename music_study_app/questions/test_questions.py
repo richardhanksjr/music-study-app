@@ -23,7 +23,7 @@ class QuestionGeneratorTest(TestCase):
 class SimpleScaleDegreeMajorTest(TestCase):
 
     def setUp(self):
-        self.question = SimpleScaleDegreeMajor('B-', 4)
+        self.question = SimpleScaleDegreeMajor(tonic='B-', scale_degree_index=4)
 
     def test_for_correct_question_string(self):
         # Check for the fifth scale degree of Bb Major

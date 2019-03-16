@@ -6,9 +6,9 @@ from ..utilities import (pitch_names, accidentals, scale_degrees, random_pitch, 
 
 class SimpleScaleDegreeMajor(Question):
 
-    def __init__(self, tonic=None, scale_degree_index=None):
-        self.tonic = tonic
-        self.scale_degree_index = scale_degree_index
+    def __init__(self, **kwargs):
+        self.tonic = kwargs.get('tonic')
+        self.scale_degree_index = kwargs.get('scale_degree_index')
         self.scale_degree = None
         self._question = None
         self._answer = None
