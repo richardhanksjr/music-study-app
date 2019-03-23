@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,7 +18,13 @@ class GetRandomQuestion(APIView):
 class GetAnswerToQuestion(APIView):
 
     def post(self, request, format=None):
-        request_dict = request.data
+        req_dict= request.POST.copy()
+        request_dict = {}
+        for (key, value) in req_dict.items():
+            if value.isdigit():
+                request_dict[key] = int(value)
+            else:
+                request_dict[key] = value
         user_answer = request_dict.get('user_answer')
         try:
             del request_dict['user_answer']

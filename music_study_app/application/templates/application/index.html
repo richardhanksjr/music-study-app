@@ -7,14 +7,19 @@
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+
 </head>
 <body>
 
     {% load static %}
     <h1>Music Theory Questions</h1>
-    <div id="question"></div>
+    <div id="question">{{message}}</div>
+    <div id="answer_options"></div>
+    <button id="submit_answer">Submit Answer</button>
     <button id="new_question">Get New Question</button>
 
+
 <script src="{% static 'js/app.js' %}"></script>
+
 </body>
 </html>
