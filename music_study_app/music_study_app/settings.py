@@ -131,4 +131,6 @@ CORS_ALLOW_CREDENTIALS = False
 
 # CORS_ORIGIN_WHITELIST = (
 #     'localhost:8000'
-# )
+# # )
+
+LOGIN_REDIRECT_URL = '/'
