@@ -32,7 +32,23 @@ function displayAnswer(data){
   }
 }
 
+function setUpForPost(){
+  const csrftoken = Cookies.get('csrftoken');
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+  });
+}
+
 function submitAnswer(){
+    setUpForPost();
     const user_answer = $('input[name=answer]:checked').val();
     const payload = Object.assign(question_params, {user_answer})
     $.post(`${api_url}/answer`, payload)
