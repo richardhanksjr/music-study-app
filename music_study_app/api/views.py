@@ -18,7 +18,7 @@ class GetRandomQuestion(APIView):
 class GetAnswerToQuestion(APIView):
 
     def post(self, request, format=None):
-        req_dict= request.POST.copy()
+        req_dict = request.data.copy()
         request_dict = {}
         for (key, value) in req_dict.items():
             if value.isdigit():
