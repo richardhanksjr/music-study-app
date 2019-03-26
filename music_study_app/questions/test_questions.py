@@ -60,7 +60,7 @@ class SimpleScaleDegreeMajorTest(TestCase):
         root = pitch.Pitch('B-')
         expected_help = ({'prompt': 'What is the root of this key?', 'answer': root.unicodeName},
                          {'prompt': f'Starting on {root.unicodeName}, count up the Major scale until you reach'
-                                    f' the fifth scale degree.  What is this note?', 'answer': 'F'})
+                                    f' the fifth scale degree. What is this note?', 'answer': 'F'})
         self.assertTupleEqual(expected_help, self.question.help_steps)
 
     def test_for_question_type(self):

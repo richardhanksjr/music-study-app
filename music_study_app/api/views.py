@@ -35,3 +35,16 @@ class GetAnswerToQuestion(APIView):
                          'user_correct': user_answer == question.answer,
                          'question': question.question}
         return Response(response_dict)
+
+
+class HelpSteps(APIView):
+    def post(self, request, format=None):
+        request_dict = request.data.copy()
+        for (key, value) in request_dict.items():
+            if value.isdigit():
+                request_dict[key] = int(value)
+            else:
+                request_dict[key] = value
+        question = QuestionGenerator.question_factory(**request_dict)
+        response = list(question.help_steps)
+        return Response(response)

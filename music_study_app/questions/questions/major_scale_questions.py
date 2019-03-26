@@ -40,7 +40,7 @@ class SimpleScaleDegreeMajor(Question):
         self._help_steps = ({'prompt': 'What is the root of this key?', 'answer': self.scale.getTonic().unicodeName},
                            {'prompt': f'Starting on {self.scale.getTonic().unicodeName},'
                                       f' count up the {self.scale.mode.capitalize()} scale until you reach the '
-                                      f'{self.scale_degree["name"]} scale degree.  What is this note?',
+                                      f'{self.scale_degree["name"]} scale degree. What is this note?',
                             'answer': self._answer})
 
     @property
