@@ -20,4 +20,5 @@ class QuestionGenerator:
             return question_choices[random.choice(list(question_choices.keys()))]()
 
         del kwargs['question_type']
+        print(question_type)
         return question_choices.get(question_type)(**kwargs)

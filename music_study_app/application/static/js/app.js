@@ -1,3 +1,4 @@
+
 const api_url = "http://localhost:8000/api"
 var question_params;
 
@@ -5,6 +6,7 @@ function populateQuestion(data){
     const answer_letters = ["a", "b", "c", "d"]
     $("#new_question").hide();
     $("#submit_answer").show();
+    $("#get_help").show();
     $("#question").html(data.question);
     $("#answer_options").empty();
     data.answer_options.forEach((answer, index) => {
@@ -23,6 +25,7 @@ function getNewQuestion(){
 function displayAnswer(data){
   $("#new_question").show();
   $("#submit_answer").hide();
+  $("#get_help").hide();
   $("#question").empty();
   $("#answer_options").empty();
   if(data.user_correct){
@@ -30,6 +33,57 @@ function displayAnswer(data){
   }else{
       $("#answer_display").html("You are incorrect");
   }
+}
+
+
+// function addHelpStepsToDOM(data){
+//     let currentIndex = 0
+//     $("#get_help").hide();
+//     $("#help_display").html(data[currentIndex].prompt);
+//     $("#help_display").append("<button id=next_help>Answer</button>").click(() => $("#help_display").append(`<div>${data[currentIndex].answer}</div>`))
+//     if (data.length - 1 > currentIndex){
+//         ++currentIndex;
+//             $("#help_display").append("<button id=next_help>Next Question</button>")
+//                 .click(() =>  {$("#help_display").html(data[currentIndex].prompt);
+//     $("#help_display").append("<button id=next_help>Answer</button>").click(() => $("#help_display").append(`<div>${data[currentIndex].answer}</div>`))})
+//     }
+//
+// }
+
+function addHelpStepsToDOM(data){
+    let currentIndex = 0;
+    $("#get_help").hide();
+    $("#help_display").append("<button>Next step</button>").click(() => {
+        if (currentIndex < data.length){
+            $("#help_display").append(`<div>${data[currentIndex].prompt}</div>`);
+            $("#help_display").append("<button>Answer</button>").click(() => {
+                $("#help_display").append(`<div>${data[currentIndex].answer}</div>`)
+        })
+            currentIndex++;
+        }
+    })
+    // $("#help_display").html(data[currentIndex].prompt);
+    // $("#help_display").append("<button id=next_help>Answer</button>").click(() =>{
+    //     $("#help_display").append(`<div>${data[currentIndex].answer}</div>`)
+    //         if (data.length - 1 > currentIndex){
+    //             ++currentIndex;
+    //             $("#help_display").append("<button>Next step</button>").click(() => console.log("clicked"))
+    // }
+    // })
+
+    //     ++currentIndex;
+    //         $("#help_display").append("<button id=next_help>Next Question</button>")
+    //             .click(() =>  {$("#help_display").html(data[currentIndex].prompt);
+    // $("#help_display").append("<button id=next_help>Answer</button>").click(() => $("#help_display").append(`<div>${data[currentIndex].answer}</div>`))})
+    // }
+
+}
+
+function displayHelpSteps(){
+  setUpForPost();
+  const payload = question_params;
+  $.post(`${api_url}/help`, payload)
+      .done((data) => addHelpStepsToDOM(data))
 }
 
 function setUpForPost(){
@@ -66,6 +120,8 @@ $('#new_question').click(function(){
 $('#submit_answer').click(function(){
   submitAnswer();
 });
+
+
 
 
 $(document).ready(getNewQuestion());
