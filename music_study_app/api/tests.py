@@ -34,7 +34,7 @@ class GetAnswerToQuestionTest(TestCase):
     def test_returns_correct_answer(self):
         response = self.client.post('/api/answer', {'question_type': self.question_type,
                                                     'tonic': self.tonic,
-                                                    'scale_degree_index': '4',
+                                                    'scale_degree_index': 4,
                                                     'user_answer': 'F'}, format='json')
 
         if response.status_code != 200:
@@ -62,7 +62,7 @@ class HelpStepsTest(TestCase):
     def test_returns_correct_help_steps(self):
         response = self.client.post('/api/help', {'question_type': self.question_type,
                                                   'tonic': self.tonic,
-                                                  'scale_degree_index': '4',
+                                                  'scale_degree_index': 4,
                                                   }, format='json')
 
         if response.status_code != 200:
