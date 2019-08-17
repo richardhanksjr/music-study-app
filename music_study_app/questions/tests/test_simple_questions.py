@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..questions.SimpleQuestions import InvertedQualityIs, SimpleIntervalIs
+from ..questions.SimpleQuestions import InvertedQualityIs, SimpleIntervalIs, TritoneIs
 from rest_framework.test import APIRequestFactory
 
 
@@ -66,3 +66,40 @@ class InvertedQualityIsTest(TestCase):
         print(self.question_major_true.question)
         actual_answer = self.question_major_true.answer
         self.assertEqual(expected_answer, actual_answer)
+
+
+class TritoneIsTest(TestCase):
+
+    def setUp(self):
+        self.question = TritoneIs()
+
+    def test_for_correct_question_str(self):
+        expected_question = "A TRITONE is: "
+        self.assertEqual(expected_question, self.question.question)
+
+
+    def test_for_correct_answer(self):
+        expected_answer = "An augmented 4th"
+        actual_answer = self.question.answer
+        self.assertEqual(expected_answer, actual_answer)
+
+
+    def test_for_answer_options(self):
+        expected_answers = ["An augmented 4th", "a three note melody", "a three tone chord", "a diminished 4th"]
+        self.assertEqual(expected_answers, self.question.answer_options)
+
+    def test_question_type(self):
+        expected_type = 'tritone-is'
+        actual_type = self.question.question_type
+        self.assertEqual(expected_type, actual_type)
+
+    def test_question_params(self):
+        expected_params = {'question_type': "tritone-is"}
+        actual_params = self.question.question_params
+        self.assertEqual(expected_params, actual_params)
+
+    def test_help_steps(self):
+        expected_steps = ({'prompt': 'What is a tritone?',
+                           'answer': 'an interval of three whole tones (an augmented fourth), as between C and F sharp.'}, )
+        actual_steps = self.question.help_steps
+        self.assertEqual(expected_steps, actual_steps)
