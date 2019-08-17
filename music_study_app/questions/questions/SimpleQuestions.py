@@ -51,7 +51,6 @@ class SimpleIntervalIs(Question):
         self._question = "A SIMPLE INTERVAL is: "
 
 
-
 class InvertedQualityIs(Question):
 
     def __init__(self, **kwargs):

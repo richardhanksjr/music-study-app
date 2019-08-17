@@ -2,12 +2,13 @@ from django.test import TestCase
 from ..questions.SimpleQuestions import InvertedQualityIs, SimpleIntervalIs
 from rest_framework.test import APIRequestFactory
 
+
 class SimpleIntervalIsTest(TestCase):
     def setUp(self):
         self.question = SimpleIntervalIs()
 
     def test_question_params(self):
-        expected_params = {'question-type': "simple-interval-is"}
+        expected_params = {'question_type': "simple-interval-is"}
         actual_params = self.question.question_params
         self.assertDictEqual(expected_params, actual_params)
 
@@ -15,9 +16,9 @@ class SimpleIntervalIsTest(TestCase):
 class InvertedQualityIsTest(TestCase):
 
     def setUp(self):
-        self.question = InvertedQualityIs(quality='perfect', same=True)
-        self.question_false = InvertedQualityIs(quality='perfect', same=False)
-        self.question_major_true = InvertedQualityIs(quality='major', same=True)
+        self.question = InvertedQualityIs(interval_quality='perfect', same=True)
+        self.question_false = InvertedQualityIs(interval_quality='perfect', same=False)
+        self.question_major_true = InvertedQualityIs(interval_quality='major', same=True)
 
     def test_for_correct_question_str(self):
         expected_question = "If a perfect interval is inverted it remains perfect"
@@ -62,5 +63,6 @@ class InvertedQualityIsTest(TestCase):
 
     def test_correct_answer_major_true(self):
         expected_answer = "False"
+        print(self.question_major_true.question)
         actual_answer = self.question_major_true.answer
         self.assertEqual(expected_answer, actual_answer)
